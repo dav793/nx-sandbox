@@ -2,17 +2,16 @@
 
 Sandbox project for testing and exploring Nx monorepos
 
-## Build
+## Build container
 
-* Build docker image from `Dockerfile` (if not exists)
+* Build docker image from `/docker/Dockerfile` (if not exists)
 ```bash
-cd ~/workspace
-docker build -t david/nx-sandbox -f docker/nx-sandbox/Dockerfile ./nx-sandbox
+docker build -t david/nx-sandbox -f docker/Dockerfile .
 ```
 
 * Create volume pointing to project in host (if not exists)
 ```bash
-docker volume create --driver local --opt type=none --opt device=$(pwd)/nx-sandbox --opt o=bind nx-sandbox
+docker volume create --driver local --opt type=none --opt device=$(pwd) --opt o=bind nx-sandbox
 ```
 
 * Create docker container and run shell
@@ -36,6 +35,12 @@ docker exec -it --user root nx-sandbox-1 sh
 ```
 
 ## Run
+
+While inside container:
+```
+cd myorg
+```
+Then...
 
 * Start Shop app
 ```
